@@ -1,3 +1,47 @@
+var bind_adapters = function(dataset)
+{
+    var adapters = ["foo", "bar", "baz", "qux"];
+
+    var select2 = $("#s").select2({
+
+        minimumInputLength: 1,
+
+        query: function (query) {
+	    
+	    var data = {results: []}, i, j, s;
+	    
+	    var count = 0;
+	    var limit = 10;
+	    
+	    if(query.term)
+	    {
+		for (var j = 0; j < adapters.length && count < limit; j++) {
+		    data.results.push( {id: 1, text: adapters[j]});
+		    count++;
+		}
+	    }
+	
+	    query.callback(data);
+	}
+    });
+    
+    $('#s').on("change", function(e) { 
+	console.log("change "+JSON.stringify({val:e.val, added:e.added, removed:e.removed}));
+	Meteor.Router.to(e.val);
+    });
+};
+
+var hide_list = function()
+{
+    $('#endpoint-list').hide();
+};
+
+var show_composer = function()
+{
+    $('#endpoint-composer').show();
+    bind_adapters();
+};
+
 Template.endpoints.created = function()
 {
     Pagination.perPage(10);
@@ -28,3 +72,11 @@ Template.endpoints.pagination = function(){
 	);
     }
 }
+
+Template.endpoints.events({
+    'click #create': function()
+    {
+	hide_list();
+	show_composer();
+    }
+});

@@ -1,3 +1,11 @@
+var hide_list = function()
+{
+};
+
+var show_composer = function()
+{
+};
+
 Template.transforms.created = function()
 {
     Pagination.perPage(10);

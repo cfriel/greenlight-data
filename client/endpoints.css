@@ -1,1 +1,19 @@
- 
+ .endpoint-composer
+{
+    display:none;
+}
+
+.endpoint-form
+{
+    margin-top: 20px;
+}
+
+.endpoint-form .item
+{
+    margin-top: 10px;
+}
+
+.buttons
+{
+    margin-top: 20px;
+}

@@ -1,4 +1,14 @@
- Template.datasets.created = function()
+var hide_list = function()
+{
+    $('#datasets-list').hide();
+};
+
+var show_composer = function()
+{
+    $('#datasets-composer').show();
+};
+
+Template.datasets.created = function()
 {
     Pagination.perPage(10);
 
@@ -28,3 +38,11 @@ Template.datasets.pagination = function(){
 	);
     }
 }
+
+Template.endpoints.events({
+    'click #create': function()
+    {
+	hide_list();
+	show_composer();
+    }
+});

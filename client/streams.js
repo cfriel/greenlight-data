@@ -1,4 +1,12 @@
- Template.streams.created = function()
+var hide_list = function()
+{
+};
+
+var show_composer = function()
+{
+};
+
+Template.streams.created = function()
 {
     Pagination.perPage(10);
 
@@ -28,3 +36,11 @@ Template.streams.pagination = function(){
 	);
     }
 }
+
+Template.streams.events({
+    'click #create': function()
+    {
+	hide_list();
+	show_composer();
+    }
+});
