@@ -1,9 +1,36 @@
 <template name="data_page">
 
+<div class="col-lg-12">
+
   <div class="col-lg-3">
+    <ul id="left-navbar" class="nav nav-tabs nav-stacked">
+      <li><a id="endpoints" href="#endpoints">Endpoints</a></li>
+      <li><a id="transforms" href="#transforms">Transforms</a></li>
+      <li><a id="datasets" href="#datasets">Datasets</a></li>
+      <li><a id="streams" href="#streams">Streams</a></li>
+    </ul>
   </div>
 
   <div class="col-lg-9">
+    
+    <div class="display-container" id="endpoints-container">
+      {{>endpoints}}
+    </div>
+
+    <div class="display-container" id="transforms-container">
+      {{>transforms}}
+    </div>
+    
+    <div class="display-container" id="datasets-container">
+      {{>datasets}}
+    </div>
+
+    <div class="display-container" id="streams-container">
+      {{>streams}}
+    </div>
+
   </div>
+
+</div>
 
 </template>
