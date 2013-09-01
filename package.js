@@ -12,6 +12,8 @@ Package.on_use(function (api, where) {
     
     api.add_files(['client/endpoints.html', 'client/endpoints.js', 'client/endpoints.css'], 'client');
     api.add_files(['client/transforms.html', 'client/transforms.js', 'client/transforms.css'], 'client');
+
+    api.add_files(['client/dataset_item.html', 'client/dataset_item.js', 'client/dataset_item.css'], 'client');    
     api.add_files(['client/datasets.html', 'client/datasets.js', 'client/datasets.css'], 'client');
     api.add_files(['client/streams.html', 'client/streams.js', 'client/streams.css'], 'client');
     
