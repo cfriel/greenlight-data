@@ -1,10 +1,25 @@
 var hide_list = function()
 {
+    $('#transform-list').hide();
 };
 
 var show_composer = function()
 {
+    $('#transform-composer').show();
 };
+
+
+var configure_editor = function()
+{
+    window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+	mode: "javascript",
+        //indentWithTabs: true,
+        //smartIndent: true,
+        lineNumbers: true,
+        //matchBrackets : true,
+        //autofocus: true
+    });
+}
 
 Template.transforms.created = function()
 {
@@ -36,3 +51,23 @@ Template.transforms.pagination = function(){
 	);
     }
 }
+
+
+Template.transforms.events({
+    'click #create': function()
+    {
+	hide_list();
+	show_composer();
+	configure_editor();
+    },
+    'click #create-transform' : function()
+    {
+	var name = $('#name').val();
+	var configuration = $('#code').val();
+	
+	var transform = new Greenlight.Transform({name:name, configuration:configuration});
+	
+	transform.save();
+
+    }
+});

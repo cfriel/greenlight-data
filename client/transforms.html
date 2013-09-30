@@ -1,5 +1,7 @@
 <template name="transforms">
 
+  <div id="transform-list">
+
   <div class="more pull-right btn-group">
    <button id="create" class="btn btn-primary" type="button">
       <i class="icon-ok icon-white"/>
@@ -54,6 +56,43 @@
   </table>
   <div class="dataset-list-pagination">
     {{{pagination}}}
+  </div>
+
+</div>
+
+  <div class="transform-composer" id="transform-composer">
+    
+    <div class="transform-form">
+      <div class="item input-group">
+	<span class="input-group-addon">Transform name</span>
+	<input type="text" class="form-control" id="name" placeholder="Transform name">
+      </div>
+    </div>
+
+    <div id="query">
+      <form>
+        <textarea id="code" name="code"></textarea>
+      </form>
+    </div>
+
+    <div class="buttons pull-right btn-group">
+      <button id="create-transform" class="btn btn-primary" type="button">
+	<i class="icon-ok icon-white"/>
+	<span>Create</span>
+      </button>
+      <button id="cancel-transform" class="btn" type="button">
+	<i class="icon-ok icon-white"/>
+	<span>Cancel</span>
+      </button>
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+	More <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+	<li><a href="#">Manage</a></li>
+	<li><a href="#">Delete</a></li>
+      </ul>
+    </div>
+    
   </div>
 
 </template>
