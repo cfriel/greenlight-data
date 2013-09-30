@@ -1,3 +1,13 @@
+Template.transforms.owner = function()
+{
+    var self = this;
+    var ownerId = self.owner;
+
+    var owner = Meteor.users.findOne({_id: ownerId});
+    
+    return owner.username;
+}
+
 var hide_list = function()
 {
     $('#transform-list').hide();
@@ -62,8 +72,8 @@ Template.transforms.events({
     },
     'click #create-transform' : function()
     {
-	var name = $('#name').val();
-	var configuration = $('#code').val();
+	var name = $('#transform-name').val();
+	var configuration = window.editor.getValue();
 	
 	var transform = new Greenlight.Transform({name:name, configuration:configuration});
 	
