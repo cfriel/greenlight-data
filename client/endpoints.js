@@ -1,34 +1,17 @@
 var bind_adapters = function(dataset)
 {
-    var adapters = ["foo", "bar", "baz", "qux"];
+    var adapters = Greenlight.Adapters.find().fetch();
+
+    adapters.every(function(element, index, array){
+	element.id = element._id;
+	element.text = element.name;
+	return true;
+    });
 
     var select2 = $("#s").select2({
-
-        minimumInputLength: 1,
-
-        query: function (query) {
-	    
-	    var data = {results: []}, i, j, s;
-	    
-	    var count = 0;
-	    var limit = 10;
-	    
-	    if(query.term)
-	    {
-		for (var j = 0; j < adapters.length && count < limit; j++) {
-		    data.results.push( {id: 1, text: adapters[j]});
-		    count++;
-		}
-	    }
-	
-	    query.callback(data);
-	}
+        data: 	adapters
     });
     
-    $('#s').on("change", function(e) { 
-	console.log("change "+JSON.stringify({val:e.val, added:e.added, removed:e.removed}));
-	Meteor.Router.to(e.val);
-    });
 };
 
 var hide_list = function()
@@ -73,10 +56,42 @@ Template.endpoints.pagination = function(){
     }
 }
 
+Template.endpoints.owner = function()
+{
+    var self = this;
+    var ownerId = self.owner;
+
+    var owner = Meteor.users.findOne({_id: ownerId});
+    
+    return owner.username;
+}
+
+
+Template.endpoints.adapter = function()
+{
+    var self = this;
+    var adapterId = self.adapter;
+
+    var adapter = Greenlight.Adapters.findOne({_id: adapterId});
+    
+    return adapter.name;
+}
+
 Template.endpoints.events({
     'click #create': function()
     {
 	hide_list();
 	show_composer();
+    },
+    'click #create-endpoint' : function()
+    {
+	var name = $('#name').val();
+	var adapter = $('#s').val();
+	var configuration = $('#connection').val();
+	
+	var endpoint = new Greenlight.Endpoint({name:name, adapter:adapter, configuration:configuration});
+	
+	endpoint.save();
+
     }
 });

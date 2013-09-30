@@ -20,7 +20,7 @@
       <thead>
 	<tr>
 	  <td>Name</td>
-	  <td>Users</td>
+	  <td>Adapter</td>
 	  <td>Owner</td>
 	  <td>Actions</td>
 	</tr>
@@ -33,7 +33,7 @@
 	  </td>
 	  <td>
 	    <div>
-	      
+	      {{adapter}}
 	    </div>
 	  </td>
 	  <td>
@@ -69,22 +69,22 @@
       </div>
 
       <div class="item input-group">
-	<span class="input-group-addon">Adapter type</span>
+	<span class="input-group-addon adapter-type">Adapter type</span>
 	<input type="hidden" id="s" style="width: 100%;"/>
       </div>
       
       <div class="item input-group">
-	<span class="input-group-addon">Connection string</span>
+	<span class="input-group-addon connection-string">Connection string</span>
 	<input type="text" class="form-control" id="connection" placeholder="Connection string">
       </div>      
     </div>
 
     <div class="buttons pull-right btn-group">
-      <button id="create" class="btn btn-primary" type="button">
+      <button id="create-endpoint" class="btn btn-primary" type="button">
 	<i class="icon-ok icon-white"/>
 	<span>Create</span>
       </button>
-      <button id="cancel" class="btn" type="button">
+      <button id="cancel-endpoint" class="btn" type="button">
 	<i class="icon-ok icon-white"/>
 	<span>Cancel</span>
       </button>
