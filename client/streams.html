@@ -1,58 +1,90 @@
 <template name="streams">
-  <div class="more pull-right btn-group">
-   <button id="create" class="btn btn-primary" type="button">
-      <i class="icon-ok icon-white"/>
-      <span>Create</span>
-   </button>
-   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-     More <span class="caret"></span>
-   </button>
-   <ul class="dropdown-menu" role="menu">
-     <li><a href="#">Manage</a></li>
-     <li><a href="#">Delete</a></li>
-   </ul>
+  <div id="stream-list">
+
+    <div class="more pull-right btn-group">
+      <button id="create" class="btn btn-primary" type="button">
+	<i class="icon-ok icon-white"/>
+	<span>Create</span>
+      </button>
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+	More <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+	<li><a href="#">Manage</a></li>
+	<li><a href="#">Delete</a></li>
+      </ul>
+    </div>
+    
+    <table class="sites-table table table-hover table-bordered">
+      <thead>
+	<tr>
+	  <td>Name</td>
+	  <td>Users</td>
+	  <td>Owner</td>
+	  <td>Actions</td>
+	</tr>
+      </thead>
+      <tbody>
+	{{#each results}}
+	<tr>
+	  <td>
+	    <a href="/{{name}}">{{name}}</a>
+	  </td>
+	  <td>
+	    <div>
+	      
+	    </div>
+	  </td>
+	  <td>
+	    <a href="/users/{{owner}}">{{owner}}</a>
+	  </td>
+	  <td>
+	    <div class="btn-group pull-right">
+	      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		Action <span class="caret"></span>
+	      </button>
+	      <ul class="dropdown-menu" role="menu">
+		<li><a href="#">Manage</a></li>
+		<li><a href="#">Delete</a></li>
+	      </ul>
+	    </div>
+	  </td>
+	</tr>
+	{{/each}}
+      </tbody>
+    </table>
+    <div class="stream-list-pagination">
+      {{{pagination}}}
+    </div>
   </div>
-  
-  <table class="sites-table table table-hover table-bordered">
-    <thead>
-      <tr>
-	<td>Name</td>
-	<td>Users</td>
-	<td>Owner</td>
-	<td>Actions</td>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each results}}
-      <tr>
-	<td>
-	  <a href="/{{name}}">{{name}}</a>
-	</td>
-	<td>
-	  <div>
-	   
-	  </div>
-	</td>
-	<td>
-	  <a href="/users/{{owner}}">{{owner}}</a>
-	</td>
-	<td>
-	  <div class="btn-group">
-	    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-	      Action <span class="caret"></span>
-	    </button>
-	    <ul class="dropdown-menu" role="menu">
-	      <li><a href="#">Manage</a></li>
-	      <li><a href="#">Delete</a></li>
-	    </ul>
-	  </div>
-	</td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-  <div class="stream-list-pagination">
-    {{{pagination}}}
+
+  <div class="stream-composer" id="stream-composer">
+    
+    <div class="stream-form">
+      <div class="item input-group">
+	<span class="input-group-addon">Stream name</span>
+	<input type="text" class="form-control" id="stream-name" placeholder="Stream name">
+      </div>
+    </div>
+
+    <div class="buttons pull-right btn-group">
+      <button id="create-stream" class="btn btn-primary" type="button">
+	<i class="icon-ok icon-white"/>
+	<span>Create</span>
+      </button>
+      <button id="cancel-transform" class="btn" type="button">
+	<i class="icon-ok icon-white"/>
+	<span>Cancel</span>
+      </button>
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+	More <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+	<li><a href="#">Manage</a></li>
+	<li><a href="#">Delete</a></li>
+      </ul>
+    </div>
+    
   </div>
 
 </template>

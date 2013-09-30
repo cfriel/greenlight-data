@@ -1,9 +1,33 @@
+var configure_editor = function()
+{
+    window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+	mode: "javascript",
+        //indentWithTabs: true,
+        //smartIndent: true,
+        lineNumbers: true,
+        //matchBrackets : true,
+        //autofocus: true
+    });
+}
+
+Template.streams.owner = function()
+{
+    var self = this;
+    var ownerId = self.owner;
+
+    var owner = Meteor.users.findOne({_id: ownerId});
+    
+    return owner.username;
+}
+
 var hide_list = function()
 {
+    $('#stream-list').hide();
 };
 
 var show_composer = function()
 {
+    $('#stream-composer').show();
 };
 
 Template.streams.created = function()
@@ -42,5 +66,15 @@ Template.streams.events({
     {
 	hide_list();
 	show_composer();
+    },
+    'click #create-stream' : function()
+    {
+	var name = $('#stream-name').val();
+	
+	var stream = new Greenlight.Stream({name:name});
+	
+	stream.save();
+
     }
+
 });
