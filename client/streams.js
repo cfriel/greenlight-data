@@ -162,8 +162,13 @@ Template.streams.events({
     'click #create-stream' : function()
     {
 	var name = $('#stream-name').val();
+	var endpoint = $('#e').val();
+	var transform = $('#t').val();
+	var dataset = $('#d').val();
 	
-	var stream = new Greenlight.Stream({name:name});
+
+	var stream = new Greenlight.Stream({name:name, endpoint: endpoint, transform: transform, dataset: dataset});
+
 	
 	stream.save();
 
