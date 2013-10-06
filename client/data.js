@@ -12,6 +12,7 @@ data.prototype.routes =   {
 	Greenlight.log("calling /data route");
 
 	Session.set('session', null);
+	Session.set('id', null);
 
 	return 'data_page';
     },
@@ -21,6 +22,7 @@ data.prototype.routes =   {
 	Greenlight.log("calling /data/endpoints route");
 
 	Session.set('section', '#endpoints-container');
+	Session.set('id', null);
 
 	return 'data_page';
     },
@@ -30,6 +32,7 @@ data.prototype.routes =   {
 	Greenlight.log("calling /data/transforms route");
 
 	Session.set('section', '#transforms-container');
+	Session.set('id', null);
 
 	return 'data_page';
     },
@@ -39,6 +42,7 @@ data.prototype.routes =   {
 	Greenlight.log("calling /data/datasets route");
 
 	Session.set('section', '#datasets-container');
+	Session.set('id', null);
 
 	return 'data_page';
     },
@@ -48,6 +52,7 @@ data.prototype.routes =   {
 	Greenlight.log("calling /data/streams-route");
 
 	Session.set('section', '#streams_container');
+	Session.set('id', null);
 
 	return 'data_page';
     },

@@ -8,6 +8,16 @@ Template.transforms.owner = function()
     return owner.username;
 }
 
+var show_list = function()
+{
+    $('#transform-list').show();
+};
+
+var hide_composer = function()
+{
+    $('#transform-composer').hide();
+};
+
 var hide_list = function()
 {
     $('#transform-list').hide();
@@ -16,6 +26,8 @@ var hide_list = function()
 var show_composer = function()
 {
     $('#transform-composer').show();
+    configure_editor();
+
 };
 
 
@@ -23,13 +35,43 @@ var configure_editor = function()
 {
     window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
 	mode: "javascript",
-        //indentWithTabs: true,
-        //smartIndent: true,
-        lineNumbers: true,
-        //matchBrackets : true,
-        //autofocus: true
+        lineNumbers: true
     });
 }
+
+var populate = function(id)
+{
+    Greenlight.log("populating transforms for id " + id);
+
+    var transform = Greenlight.Transforms.findOne({_id : id});
+
+    if(transform != null)
+    {
+	$('#transform-name').val(transform.name);
+    }
+};
+
+Template.transforms.rendered = function()
+{
+    Deps.autorun(function(){
+
+	var section = Session.get('section');
+	var id = Session.get('id');
+
+	if(section == '#transforms-container' && id != null)
+	{
+	    hide_list();
+	    show_composer();
+	    populate(id);
+	}
+	else if(section == '#transforms-container' && id == null)
+	{
+	    hide_composer();
+	    show_list();
+	}
+    });
+
+};
 
 Template.transforms.created = function()
 {
@@ -68,7 +110,6 @@ Template.transforms.events({
     {
 	hide_list();
 	show_composer();
-	configure_editor();
     },
     'click #create-transform' : function()
     {

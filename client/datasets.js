@@ -1,12 +1,57 @@
+var show_list = function()
+{
+    $('#dataset-list').show();
+};
+
+var hide_composer = function()
+{
+    $('#dataset-composer').hide();
+};
+
 var hide_list = function()
 {
-    $('#datasets-list').hide();
+    $('#dataset-list').hide();
 };
 
 var show_composer = function()
 {
-    $('#datasets-composer').show();
+    $('#dataset-composer').show();
 };
+
+var populate = function(id)
+{
+    Greenlight.log("populating datasets for id " + id);
+
+    var dataset = Greenlight.Datasets.findOne({_id : id});
+
+    if(dataset != null)
+    {
+	$('#dataset-name').val(dataset.name);
+    }
+};
+
+Template.datasets.rendered = function()
+{
+    Deps.autorun(function(){
+
+	var section = Session.get('section');
+	var id = Session.get('id');
+
+	if(section == '#datasets-container' && id != null)
+	{
+	    hide_list();
+	    show_composer();
+	    populate(id);
+	}
+	else if(section == '#datasets-container' && id == null)
+	{
+	    hide_composer();
+	    show_list();
+	}
+    });
+
+};
+
 
 Template.datasets.created = function()
 {

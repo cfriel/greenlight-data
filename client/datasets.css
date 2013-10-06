@@ -2,3 +2,23 @@ div.more
 {
     margin-bottom: 10px;
 }
+
+.dataset-composer
+{
+    display:none;
+}
+
+.dataset-form
+{
+    margin-top: 20px;
+}
+
+.dataset-form .item
+{
+    margin-top: 10px;
+}
+
+.buttons
+{
+    margin-top: 20px;
+}

@@ -14,6 +14,16 @@ var bind_adapters = function(dataset)
     
 };
 
+var show_list = function()
+{
+    $('#endpoint-list').show();
+};
+
+var hide_composer = function()
+{
+    $('#endpoint-composer').hide();
+};
+
 var hide_list = function()
 {
     $('#endpoint-list').hide();
@@ -23,6 +33,38 @@ var show_composer = function()
 {
     $('#endpoint-composer').show();
     bind_adapters();
+};
+
+var populate = function(id)
+{
+    Greenlight.log("populating endpoints for id " + id);
+
+    var endpoint = Greenlight.Endpoints.findOne({_id : id});
+
+    if(endpoint != null)
+    {
+	$('#name').val(endpoint.name);
+    }
+};
+
+Template.endpoints.rendered = function()
+{
+    Deps.autorun(function(){
+	var section = Session.get('section');
+	var id = Session.get('id');
+
+	if(section == '#endpoints-container' && id != null)
+	{
+	    hide_list();
+	    show_composer();
+	    populate(id);
+	}
+	else if(section == '#endpoints-container' && id == null)
+	{
+	    hide_composer();
+	    show_list();
+	}
+    });
 };
 
 Template.endpoints.created = function()
