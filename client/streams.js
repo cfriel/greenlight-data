@@ -46,18 +46,48 @@ var bind_datasets = function()
     
 };
 
+var populate = function(id)
+{
+    Greenlight.log("populating streams for id " + id);
+
+    var stream = Greenlight.Streams.findOne({_id : id});
+
+    if(stream != null)
+    {
+	$('#stream-name').val(stream.name);
+    }
+};
 
 var configure_editor = function()
 {
     window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
 	mode: "javascript",
-        //indentWithTabs: true,
-        //smartIndent: true,
-        lineNumbers: true,
-        //matchBrackets : true,
-        //autofocus: true
+        lineNumbers: true
     });
 }
+
+Template.streams.rendered = function()
+{
+    Deps.autorun(function(){
+
+	var section = Session.get('section');
+	var id = Session.get('id');
+
+	if(section == '#streams-container' && id != null)
+	{
+	    hide_list();
+	    show_composer();
+	    populate(id);
+	}
+	else if(section == '#datasets-container' && id == null)
+	{
+	    hide_composer();
+	    show_list();
+	}
+    });
+
+};
+
 
 Template.streams.owner = function()
 {
@@ -68,6 +98,16 @@ Template.streams.owner = function()
     
     return owner.username;
 }
+
+var show_list = function()
+{
+    $('#stream-list').show();
+};
+
+var hide_composer = function()
+{
+    $('#stream-composer').hide();
+};
 
 var hide_list = function()
 {

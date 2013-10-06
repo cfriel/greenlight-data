@@ -49,9 +49,9 @@ data.prototype.routes =   {
 
     '/data/streams': function()
     {
-	Greenlight.log("calling /data/streams-route");
+	Greenlight.log("calling /data/streams route");
 
-	Session.set('section', '#streams_container');
+	Session.set('section', '#streams-container');
 	Session.set('id', null);
 
 	return 'data_page';
@@ -89,9 +89,9 @@ data.prototype.routes =   {
 
     '/data/streams/:id': function(id)
     {
-	Greenlight.log("calling /data/streams-route");
+	Greenlight.log("calling /data/streams route");
 
-	Session.set('section', '#streams_container');
+	Session.set('section', '#streams-container');
 	Session.set('id', id);
 
 	return 'data_page';
