@@ -1,3 +1,52 @@
+var bind_transforms = function()
+{
+    var transforms = Greenlight.Transforms.find().fetch();
+
+    transforms.every(function(element, index, array){
+	element.id = element._id;
+	element.text = element.name;
+	return true;
+    });
+
+    var select2 = $("#t").select2({
+        data: 	transforms
+    });
+    
+};
+
+var bind_endpoints = function()
+{
+    var endpoints = Greenlight.Endpoints.find().fetch();
+
+    endpoints.every(function(element, index, array){
+	element.id = element._id;
+	element.text = element.name;
+	return true;
+    });
+
+    var select2 = $("#e").select2({
+        data: 	endpoints
+    });
+    
+};
+
+var bind_datasets = function()
+{
+    var datasets = Greenlight.Datasets.find().fetch();
+
+    datasets.every(function(element, index, array){
+	element.id = element._id;
+	element.text = element.name;
+	return true;
+    });
+
+    var select2 = $("#d").select2({
+        data: 	datasets
+    });
+    
+};
+
+
 var configure_editor = function()
 {
     window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
@@ -28,6 +77,9 @@ var hide_list = function()
 var show_composer = function()
 {
     $('#stream-composer').show();
+    bind_endpoints();
+    bind_transforms();
+    bind_datasets();
 };
 
 Template.streams.created = function()

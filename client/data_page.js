@@ -22,17 +22,32 @@ var navigate = function(selector)
     show_container(selector);
 };
 
+Template.data_page.rendered = function()
+{
+
+    Deps.autorun(function(){
+	
+	var section = Session.get('section');
+	
+	if(section != null)
+	{
+	    navigate(section);
+	}
+	
+    });
+};
+
 Template.data_page.events({
   'click #endpoints': function() {  
-      navigate('#endpoints-container');
+      Meteor.Router.to('/data/endpoints');
   },
   'click #transforms': function() {  
-      navigate('#transforms-container');
+      Meteor.Router.to('/data/transforms');
   },
   'click #datasets': function() {  
-      navigate('#datasets-container');
+      Meteor.Router.to('/data/datasets');
   },
   'click #streams': function() {  
-      navigate('#streams-container');
+      Meteor.Router.to('/data/streams');
   }
 });

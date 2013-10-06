@@ -2,4 +2,25 @@
 {
     display:none;
 }
+
+
+.stream-composer
+{
+    display:none;
+}
+
+.stream-form
+{
+    margin-top: 20px;
+}
+
+.stream-form .item
+{
+    margin-top: 10px;
+}
+
+.buttons
+{
+    margin-top: 20px;
+}
  

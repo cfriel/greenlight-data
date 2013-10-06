@@ -11,8 +11,88 @@ data.prototype.routes =   {
     {
 	Greenlight.log("calling /data route");
 
+	Session.set('session', null);
+
+	return 'data_page';
+    },
+
+    '/data/endpoints': function()
+    {
+	Greenlight.log("calling /data/endpoints route");
+
+	Session.set('section', '#endpoints-container');
+
+	return 'data_page';
+    },
+
+    '/data/transforms': function()
+    {
+	Greenlight.log("calling /data/transforms route");
+
+	Session.set('section', '#transforms-container');
+
+	return 'data_page';
+    },
+
+    '/data/datasets': function()
+    {
+	Greenlight.log("calling /data/datasets route");
+
+	Session.set('section', '#datasets-container');
+
+	return 'data_page';
+    },
+
+    '/data/streams': function()
+    {
+	Greenlight.log("calling /data/streams-route");
+
+	Session.set('section', '#streams_container');
+
+	return 'data_page';
+    },
+
+    '/data/endpoints/:id': function(id)
+    {
+	Greenlight.log("calling /data/endpoints route");
+
+	Session.set('section', '#endpoints-container');
+	Session.set('id', id);
+
+	return 'data_page';
+    },
+
+    '/data/transforms/:id': function(id)
+    {
+	Greenlight.log("calling /data/transforms route");
+
+	Session.set('section', '#transforms-container');
+	Session.set('id', id);
+
+	return 'data_page';
+    },
+
+    '/data/datasets/:id': function(id)
+    {
+	Greenlight.log("calling /data/datasets route");
+
+	Session.set('section', '#datasets-container');
+	Session.set('id', id);
+
+	return 'data_page';
+    },
+
+    '/data/streams/:id': function(id)
+    {
+	Greenlight.log("calling /data/streams-route");
+
+	Session.set('section', '#streams_container');
+	Session.set('id', id);
+
 	return 'data_page';
     }
+
+
 
 };
 
