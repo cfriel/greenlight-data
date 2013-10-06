@@ -48,6 +48,7 @@ var populate = function(id)
     if(transform != null)
     {
 	$('#transform-name').val(transform.name);
+	window.editor.setValue(transform.configuration);
     }
 };
 

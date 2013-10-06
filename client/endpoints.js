@@ -44,6 +44,8 @@ var populate = function(id)
     if(endpoint != null)
     {
 	$('#name').val(endpoint.name);
+	$('#s').val(endpoint.adapter);
+	$('#configuration').val(endpoint.configuration);
     }
 };
 
@@ -129,7 +131,7 @@ Template.endpoints.events({
     {
 	var name = $('#name').val();
 	var adapter = $('#s').val();
-	var configuration = $('#connection').val();
+	var configuration = $('#configuration').val();
 	
 	var endpoint = new Greenlight.Endpoint({name:name, adapter:adapter, configuration:configuration});
 	

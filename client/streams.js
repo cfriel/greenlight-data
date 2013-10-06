@@ -55,6 +55,9 @@ var populate = function(id)
     if(stream != null)
     {
 	$('#stream-name').val(stream.name);
+	$('#e').val(stream.endpoint);
+	$('#t').val(stream.transform);
+	$('#d').val(stream.dataset);
     }
 };
 
@@ -166,9 +169,7 @@ Template.streams.events({
 	var transform = $('#t').val();
 	var dataset = $('#d').val();
 	
-
 	var stream = new Greenlight.Stream({name:name, endpoint: endpoint, transform: transform, dataset: dataset});
-
 	
 	stream.save();
 
